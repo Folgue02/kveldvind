@@ -22,6 +22,7 @@ Table exercise_attachments {
     exercise_id integer
     file_path varchar
     sort_order integer
+    attachment_type integer [note: "0 -> image, 1 -> youtube video"]
 }
 
 Ref: exercises.id < exercise_attachments.exercise_id
