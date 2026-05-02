@@ -5,6 +5,11 @@ Table users {
     // Other fields with timestamps and account recovery features...
 }
 
+Table exercise_tags {
+    id integer [primary key]
+    name varchar
+}
+
 // Exercises
 Table exercises {
     id integer [primary key]
@@ -12,14 +17,18 @@ Table exercises {
     description text
     icon_path varchar
     author_id integer
+    exercise_tag_id integer
+    body_region smallint [note: "1 -> Upper body, 2 -> Lower body, 3 -> Core, 4 -> Full body"]
     public tinyint
 }
 
+Ref: exercises.extercise_tag_id > exercise_tags.id
 Ref: exercises.author_id > users.id
 
 Table exercise_attachments {
     id integer [primary key]
     exercise_id integer
+    attachment_name varchar
     file_path varchar
     sort_order integer
     attachment_type integer [note: "0 -> image, 1 -> youtube video"]

@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('icon_path')->nullable();
             $table->foreignId('author_id')->constrained('users')
                 ->cascadeOnDelete();
+            $table->foreignId('exercise_tag_id');
+            $table->integer('body_region');
             $table->tinyInteger('public')->default(0);
             $table->timestamps();
         });

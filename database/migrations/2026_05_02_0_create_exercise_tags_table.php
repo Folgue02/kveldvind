@@ -11,14 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('exercise_attachments', function (Blueprint $table) {
+        Schema::create('exercise_tags', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('exercise_id')->constrained()
-                ->cascadeOnDelete();
-            $table->string('attachment_name');
-            $table->string('file_path');
-            $table->integer('sort_order')->default(0);
-            $table->integer('attachment_type');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -28,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('exercise_attachments');
+        Schema::dropIfExists('exercise_tags');
     }
 };
