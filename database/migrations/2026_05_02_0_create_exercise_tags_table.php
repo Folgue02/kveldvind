@@ -14,8 +14,12 @@ return new class extends Migration
         Schema::create('exercise_tags', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->timestamps();
         });
+
+        DB::table('exercise_tags')->insert([
+            ['name' => 'Push'],
+            ['name' => 'Pull']
+        ]);
     }
 
     /**

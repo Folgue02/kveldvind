@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 
-#[Fillable('file_path', 'sort_order', 'attachment_type')]
+#[Fillable('attachment_name', 'file_path', 'sort_order', 'attachment_type')]
 class ExerciseAttachment extends Model
 {
     public function user()

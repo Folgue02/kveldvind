@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Workout\ExerciseController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,3 +19,12 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+// ====================
+// Workout related
+// ====================
+
+// Exercises
+Route::controller(ExerciseController::class)->group(function () {
+    Route::get('/exercises', 'index')->name('workout.exercises.index');
+});
