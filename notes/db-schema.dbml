@@ -1,0 +1,75 @@
+Table users {
+    id integer [primary key]
+    name varchar
+    email varchar
+    // Other fields with timestamps and account recovery features...
+}
+
+// Exercises
+Table exercises {
+    id integer [primary key]
+    name varchar
+    description text
+    icon_path varchar
+    author_id integer
+    public tinyint
+}
+
+Ref: exercises.author_id > users.id
+
+Table exercise_attachments {
+    id integer [primary key]
+    exercise_id integer
+    file_path varchar
+    sort_order integer
+}
+
+Ref: exercises.id < exercise_attachments.exercise_id
+
+// Exercise block
+Table exercise_blocks {
+    id integer [primary key]
+    name varchar
+    description text
+    alias varchar [note: "Short name"]
+    public tinyint [note: "1 -> public, 0 -> private"]
+    author_id integer
+}
+
+Ref: exercise_blocks.author_id > users.id
+
+Table exercise_block_details {
+    id integer [primary key]
+    sort_order integer
+    exercise_id integer
+    exercise_block_id integer
+    series integer
+    min_reps integer
+    max_reps integer
+}
+
+Ref: exercise_block_details.exercise_id > exercises.id
+Ref: exercise_block_details.exercise_block_id > exercise_blocks.id
+
+// Routines
+Table routines {
+    id integer [primary key]
+    name varchar
+    description text
+    intensity integer [note: "User rated intensity"]
+    day_count integer [note: "Number of days covered by the routine (7 would be a week, 30 a month...)"]
+    author_id integer
+}
+
+Ref: routines.author_id > users.id
+
+Table routine_details {
+    id integer [primary key]
+    routine_id integer
+    exercise_block_id integer
+    day integer
+    sort_order integer
+}
+
+Ref: routine_details.routine_id > routines.id
+Ref: routine_details.exercise_block_id > exercise_blocks.id
