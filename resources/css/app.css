@@ -1,3 +1,141 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/*@tailwind base;*/
+/*@tailwind components;*/
+/*@tailwind utilities;*/
+
+/* Color palette */
+/* palette.css — Kveldvind color tokens
+   Sketch-inspired warm palette with one accent.
+   Use the CSS variables anywhere; switch theme via [data-theme="dark"]
+   on <html> or <body>, or rely on prefers-color-scheme. */
+
+:root {
+   /* ── Brand ─────────────────────────────────────────────── */
+  --kv-accent:        #2563eb;   /* vivid blue — primary action */
+  --kv-accent-hover:  #1d4ed8;
+  --kv-accent-soft:   #dbeafe;   /* tinted background for accent */
+  --kv-accent-ink:    #ffffff;   /* text on accent */
+
+  /* ── Surfaces ──────────────────────────────────────────── */
+  --kv-bg:        #f8fafc;       /* page */
+  --kv-surface:   #ffffff;       /* cards, inputs */
+  --kv-panel:     #eef2f8;       /* secondary panels, headers */
+  --kv-elevated:  #ffffff;       /* modals, popovers */
+  --kv-overlay:   rgba(15, 23, 42, 0.45);
+
+  /* ── Ink (text) ────────────────────────────────────────── */
+  --kv-ink:        #0f172a;      /* primary text */
+  --kv-ink-2:      #1e3a5f;      /* secondary text */
+  --kv-ink-muted:  #64748b;      /* tertiary / placeholder */
+  --kv-ink-faint:  #cbd5e1;      /* disabled, hairlines */
+
+  /* ── Borders / dividers ───────────────────────────────── */
+  --kv-border:        #0f172a;   /* strong (sketch outline) */
+  --kv-border-soft:   #94a3b8;
+  --kv-border-faint:  #e2e8f0;
+
+  /* ── Semantic ─────────────────────────────────────────── */
+  --kv-success:    #2f8f5b;
+  --kv-success-soft: #d8ebde;
+  --kv-warning:    #c98a14;
+  --kv-warning-soft: #f6ecd1;
+  --kv-danger:     #c0392b;
+  --kv-danger-soft: #f4d8d3;
+  --kv-info:       #6d28d9;
+  --kv-info-soft:  #ede9fe;
+
+  /* ── Body-region accents (for chips/tags) ─────────────── */
+  --kv-region-upper:  #2563eb;   /* 1 */
+  --kv-region-lower:  #7c3aed;   /* 2 */
+  --kv-region-core:   #0891b2;   /* 3 */
+  --kv-region-full:   #2f8f5b;   /* 4 */
+
+  /* ── Type ─────────────────────────────────────────────── */
+  --kv-font-hand:    "Kalam", "Caveat", system-ui, sans-serif;
+  --kv-font-display: "Caveat", "Kalam", system-ui, sans-serif;
+  --kv-font-mono:    "JetBrains Mono", ui-monospace, monospace;
+  --kv-font-ui:      ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  /* ── Radii / shadow ───────────────────────────────────── */
+  --kv-radius-sm: 3px;
+  --kv-radius-md: 6px;
+  --kv-radius-lg: 12px;
+  --kv-shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.08);
+  --kv-shadow-md: 0 2px 8px rgba(15, 23, 42, 0.10), 0 1px 2px rgba(15, 23, 42, 0.06);
+  --kv-shadow-lg: 0 12px 40px rgba(15, 23, 42, 0.18);
+  --kv-shadow-sketch: 6px 6px 0 rgba(15, 23, 42, 0.15);
+}
+
+/* ── Dark theme ─────────────────────────────────────────── */
+[data-theme="dark"] {
+  --kv-accent:        #60a5fa;
+  --kv-accent-hover:  #93c5fd;
+  --kv-accent-soft:   #1e3a6e;
+  --kv-accent-ink:    #0f1e36;
+
+  --kv-bg:        #0f1e36;
+  --kv-surface:   #162744;
+  --kv-panel:     #1a2f52;
+  --kv-elevated:  #1f3660;
+  --kv-overlay:   rgba(0, 0, 0, 0.55);
+
+  --kv-ink:        #e8f0fe;
+  --kv-ink-2:      #bfcfe8;
+  --kv-ink-muted:  #7a9bb5;
+  --kv-ink-faint:  #3a5272;
+
+  --kv-border:        #c8d8f0;
+  --kv-border-soft:   #2d4a6e;
+  --kv-border-faint:  #1f3660;
+
+  --kv-success:    #4fb37a;
+  --kv-success-soft: #1f3a2a;
+  --kv-warning:    #e3a93b;
+  --kv-warning-soft: #3a2f15;
+  --kv-danger:     #e2604f;
+  --kv-danger-soft: #3a1f1a;
+  --kv-info:       #a78bfa;
+  --kv-info-soft:  #2d1f5a;
+
+  --kv-region-upper:  #60a5fa;
+  --kv-region-lower:  #a78bfa;
+  --kv-region-core:   #22d3ee;
+  --kv-region-full:   #4fb37a;
+
+  --kv-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --kv-shadow-md: 0 2px 8px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.25);
+  --kv-shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.5);
+  --kv-shadow-sketch: 6px 6px 0 rgba(0, 10, 30, 0.4);
+}
+
+/* Auto dark via system preference (only if no explicit theme set) */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --kv-accent:        #60a5fa;
+    --kv-accent-hover:  #93c5fd;
+    --kv-accent-soft:   #1e3a6e;
+    --kv-accent-ink:    #0f1e36;
+
+    --kv-bg:        #0f1e36;
+    --kv-surface:   #162744;
+    --kv-panel:     #1a2f52;
+    --kv-elevated:  #1f3660;
+    --kv-overlay:   rgba(0, 0, 0, 0.55);
+
+    --kv-ink:        #e8f0fe;
+    --kv-ink-2:      #bfcfe8;
+    --kv-ink-muted:  #7a9bb5;
+    --kv-ink-faint:  #3a5272;
+
+    --kv-border:        #c8d8f0;
+    --kv-border-soft:   #2d4a6e;
+    --kv-border-faint:  #1f3660;
+  }
+}
+
+body {
+    background-color: var(--kv-bg);
+    color: var(--kv-ink);
+    margin: 0;
+    padding: 0;
+    font-family: Arial;
+}

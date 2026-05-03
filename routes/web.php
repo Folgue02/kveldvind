@@ -26,5 +26,7 @@ require __DIR__.'/auth.php';
 
 // Exercises
 Route::controller(ExerciseController::class)->group(function () {
-    Route::get('/exercises', 'index')->name('workout.exercises.index');
+    Route::get('/exercises', 'index')
+        ->middleware('auth')
+        ->name('workout.exercises.index');
 });

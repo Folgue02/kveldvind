@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
     @stack('styles')
+    @vite(['resources/css/app.css'])
 </head>
 <body>
     {{-- TODO: Navigation --}}

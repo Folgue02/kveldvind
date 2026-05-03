@@ -1,0 +1,14 @@
+.card {
+    box-shadow: var(--kv-shadow-md);
+    background-color: var(--kv-surface);
+    padding: 3px 10px;
+    border-radius: var(--kv-radius-lg);
+}
+
+.card-lift-hover {
+    transition-duration: .2s;
+}
+
+.card-lift-hover:hover {
+    transform: translateY(-5px);
+}
