@@ -10,11 +10,11 @@ enum ExerciseBodyRegion
     case FULL_BODY;
 
     /**
-     * @param int $bodyRegionCode Representative code for the region
+     * @param ?int $bodyRegionCode Representative code for the region
      * @return ExerciseBodyRegion|null Region associated to the code *(or null
      * if there is no such region)*
      */
-    public static function ofCode(int $bodyRegionCode): ?self
+    public static function ofCode(?int $bodyRegionCode): ?self
     {
         return match ($bodyRegionCode) {
             1 => self::UPPER_BODY,

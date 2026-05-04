@@ -22,7 +22,7 @@ Table exercises {
     public tinyint
 }
 
-Ref: exercises.extercise_tag_id > exercise_tags.id
+Ref: exercises.exercise_tag_id > exercise_tags.id
 Ref: exercises.author_id > users.id
 
 Table exercise_attachments {
