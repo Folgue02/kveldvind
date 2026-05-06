@@ -37,6 +37,9 @@
 
 .card-exercise .delete-exercise {
     margin-left: auto;
+}
+
+.card-exercise .delete-exercise input[type=submit] {
     cursor: pointer;
     border-radius: var(--kv-radius-sm);
     transition-duration: .5s;
@@ -44,7 +47,7 @@
     user-select: none;
 }
 
-.card-exercise .delete-exercise:hover {
+.card-exercise .delete-exercise input[type=submit]:hover {
     background-color: lightcoral;
 }
 

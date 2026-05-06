@@ -1,10 +1,11 @@
-.exercise-form {
+.exercise-form-container {
     margin-inline: auto;
     margin-bottom: 15px;
     width: 800px;
 }
 
-.exercise-form .icon-section {
+.exercise-form-container .icon-section {
     width: 80px;
     flex: none;
 }
+

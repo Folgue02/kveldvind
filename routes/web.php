@@ -4,9 +4,9 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Workout\ExerciseController;
 
-Route::get('/', function () {
-    return view('home');
-});
+// Home
+Route::view('/', 'home')->name('home');
+Route::redirect('/home', '/');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -26,7 +26,23 @@ require __DIR__.'/auth.php';
 
 // Exercises
 Route::controller(ExerciseController::class)->group(function () {
-    Route::get('/exercises', 'index')
-        ->middleware('auth')
-        ->name('workout.exercises.index');
+    Route::middleware('auth')->group(function() {
+        Route::get('/exercises', 'index')
+            ->name('workout.exercises.index');
+
+        Route::get('/exercises/create', 'create')
+            ->name('workout.exercises.create');
+
+        Route::post('/exercises/create', 'store')
+            ->name('workout.exercises.store');
+
+        Route::get('/exercises/edit/{id}', 'edit')
+            ->name('workout.exercises.edit');
+
+        Route::put('/exercise/edit/{id}', 'update')
+            ->name('workout.exercises.update');
+
+        Route::get('/exercises/destroy/{id}', 'destroy')
+            ->name('workout.exercises.destroy');
+    });
 });

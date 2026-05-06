@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-#[Fillable('name', 'description', 'icon_path', 'public', 'body_region')]
+#[Fillable('name', 'description', 'icon_path', 'public', 'body_region', 'exercise_tag_id')]
 class Exercise extends Model
 {
 

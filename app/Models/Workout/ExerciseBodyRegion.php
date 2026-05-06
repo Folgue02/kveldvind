@@ -37,4 +37,13 @@ enum ExerciseBodyRegion
             self::FULL_BODY => 4
         };
     }
+
+    /**
+     * @return string Readable name of the body region variant
+     */
+    public function naturalName(): string
+    {
+        // TODO: Replace this with actual internationalization
+        return ucfirst(strtolower(str_replace('_', ' ', $this->name)));
+    }
 }

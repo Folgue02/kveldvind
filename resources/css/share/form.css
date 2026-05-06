@@ -30,15 +30,16 @@
     width: 100%;
 }
 
-.form .action-line {
+.action-line {
     display: flex;
     flex-direction: row;
     justify-content: end;
     align-items: center;
     margin-top: 10px;
+    column-gap: 7px;
 }
 
-.form .action-line .action {
+.action-line .action {
     padding: 4px 6px;
     background-color: var(--kv-accent-soft);
     color: var(--kv-ink);
@@ -47,16 +48,16 @@
     font-size: 1.2rem;
 }
 
-.form .action-line .action:hover {
+.action-line .action:hover {
     background-color: var(--kv-accent);
 }
 
-.form .action-line .action .danger {
+.action-line .action.danger {
     background-color: red;
     color: var(--kv-ink);
     transition-duration: .3s;
 }
 
-.form .action-line .action .danger:hover {
+.form .action-line .action.danger:hover {
     background-color: lightcoral;
 }

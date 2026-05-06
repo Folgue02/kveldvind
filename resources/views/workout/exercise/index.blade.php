@@ -10,7 +10,7 @@
 @section('content')
     <x-share.page-header>
         <x-slot:left>
-            <h2 class="title">Your exercises</h2>
+            <h2 class="title">Your exercises ({{ $exercises->count() }})</h2>
         </x-slot:left>
 
         <x-slot:right>
