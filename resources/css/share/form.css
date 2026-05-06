@@ -1,0 +1,62 @@
+.form label {
+    text-transform: uppercase;
+    color: var(--kv-ink-faint);
+}
+
+.form input[type=text], .form input[type=number],
+.form select, .form textarea {
+    background-color: var(--kv-surface);
+    color: var(--kv-ink);
+    border-radius: var(--kv-radius-md);
+}
+
+.form .form-line {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.form .form-line .section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    column-gap: 10px;
+    flex: 1 1 auto;
+}
+
+.form .form-line .section input {
+    width: 100%;
+}
+
+.form .action-line {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.form .action-line .action {
+    padding: 4px 6px;
+    background-color: var(--kv-accent-soft);
+    color: var(--kv-ink);
+    transition-duration: .3s;
+    border-radius: var(--kv-radius-md);
+    font-size: 1.2rem;
+}
+
+.form .action-line .action:hover {
+    background-color: var(--kv-accent);
+}
+
+.form .action-line .action .danger {
+    background-color: red;
+    color: var(--kv-ink);
+    transition-duration: .3s;
+}
+
+.form .action-line .action .danger:hover {
+    background-color: lightcoral;
+}

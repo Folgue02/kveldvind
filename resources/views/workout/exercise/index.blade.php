@@ -8,19 +8,19 @@
 @endpush
 
 @section('content')
-    <h2>Your exercises</h2>
+    <x-share.page-header>
+        <x-slot:left>
+            <h2 class="title">Your exercises</h2>
+        </x-slot:left>
+
+        <x-slot:right>
+            <a href="{{ route('workout.exercises.create') }}" class="action">+ Create exercise</a>
+        </x-slot:right>
+    </x-share.page-header>
 
     <div class="exercises">
         @forelse($exercises as $exercise)
-            <div class="card card-lift-hover card-exercise" data-name="{{ $exercise->name }}">
-                <div class="exercise-header">
-                    <img class="exercise-icon" src="{{ $exercise->icon_path ? Storage::url($exercise->icon_path) : '/assets/default-exercise-icon.png' }}" alt="{{ $exercise->name }}">
-                    <h4 class="exercise-title">{{ $exercise->name }}</h4>
-                    <div class="delete-exercise">🗑</div>️
-                </div>
-                <p class="exercise-description">{{ $exercise->description }}</p>
-
-            </div>
+            <x-workout.exercises.card :exercise="$exercise"/>
         @empty
             <p>No exercises, create one <a href="#">here</a></p>
         @endforelse

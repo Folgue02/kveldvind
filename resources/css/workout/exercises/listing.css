@@ -13,7 +13,11 @@
     flex: 0 1 auto;
     max-width: 400px;
     height: 200px;
-    padding-inline: 0;
+    padding: 5px 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .exercise-header {
@@ -48,3 +52,26 @@
     margin-top: 0;
 }
 
+.card-exercise .tag-line {
+    margin: auto 10px 10px 10px;
+}
+
+.card-exercise .tag-line p {
+    padding: 4px 8px;
+    font-size: 0.9rem;
+    display: inline;
+    border-radius: var(--kv-radius-md);
+}
+
+.card-exercise .tag-line .exercise-tag {
+    background-color: #c591ff;
+    color: #5e289c;
+    border: 1px solid #5e289c;
+}
+
+
+.card-exercise .tag-line .exercise-body-region {
+    background-color: #9499ff;
+    color: #373dad;
+    border: 1px solid #373dad;
+}

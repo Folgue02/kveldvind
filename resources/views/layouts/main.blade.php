@@ -13,7 +13,7 @@
     <div class="navbar">
         <div class="navbar-left">
             <img src="" alt="Placeholder" class="logo">
-            <a href="/" class="location">Home</a>
+            <a href="{{ route('home') }}" class="location">Home</a>
         </div>
 
         <div class="navbar-right">
