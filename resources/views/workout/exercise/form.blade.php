@@ -8,8 +8,7 @@
 @endif
 
 @push('styles')
-    @vite(['resources/css/share/form.css'])
-    @vite(['resources/css/workout/exercises/form.css'])
+    @vite(['resources/css/share/form.css', 'resources/css/workout/exercises/form.css'])
 @endpush
 
 @section('content')

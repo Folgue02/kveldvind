@@ -4,10 +4,15 @@
 }
 
 .form input[type=text], .form input[type=number],
+.form input[type=email], .form input[type=password],
 .form select, .form textarea {
     background-color: var(--kv-surface);
     color: var(--kv-ink);
     border-radius: var(--kv-radius-md);
+}
+
+span.error {
+    color: red;
 }
 
 .form .form-line {
@@ -16,6 +21,10 @@
     justify-content: space-between;
     align-items: center;
     column-gap: 10px;
+}
+
+.form .form-line + .form-line {
+    margin-top: 20px;
 }
 
 .form .form-line .section {
