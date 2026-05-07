@@ -19,26 +19,25 @@
         <form action="{{ route('login') }}" method="POST" class="form">
             @csrf
             <div class="form-line">
-                <div class="section">
-                    <label for="email">Email</label>
-                    <input type="email" name="email" value="{{ old('email') }}">
-                    @error('email') <span class="error">{{ $message }}</span> @enderror
-                </div>
+                <x-share.form.text-input
+                    label="Email"
+                    name="email"
+                    type="email"
+                    required="true"/>
             </div>
 
             <div class="form-line">
-                <div class="section">
-                    <label for="password">Password</label>
-                    <input type="password" name="password">
-                    @error('password') <span class="error">{{ $message }}</span> @enderror
-                </div>
+                <x-share.form.text-input
+                    label="Password"
+                    name="password"
+                    input-type="password"
+                    required="true"/>
             </div>
 
             <div class="form-line">
-                <div class="checkbox-section">
-                    <label for="remember">Remember me</label>
-                    <input type="checkbox" name="remember" {{ old('remember') ? 'selected' : '' }}>
-                </div>
+                <x-share.form.checkbox-input
+                    name="remember"
+                    label="Remember me"/>
             </div>
 
             <div class="action-line">
