@@ -15,7 +15,7 @@ class ExerciseController extends Controller
      */
     public function index(Request $request)
     {
-        $exercises = Exercise::where('author_id', $request->user()->id)->get();
+        $exercises = $request->user()->exercises()->get();
 
         return view('workout.exercise.index', compact('exercises'));
     }

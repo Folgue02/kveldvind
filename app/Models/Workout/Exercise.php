@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 #[Fillable('name', 'description', 'icon_path', 'public', 'body_region', 'exercise_tag_id')]
 class Exercise extends Model
 {
-
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

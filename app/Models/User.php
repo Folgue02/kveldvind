@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Workout\Exercise;
+use App\Models\Workout\ExerciseBlock;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
@@ -36,5 +36,10 @@ class User extends Authenticatable
     public function exercises(): HasMany
     {
         return $this->hasMany(Exercise::class, 'author_id');
+    }
+
+    public function exerciseBlocks(): HasMany
+    {
+        return $this->hasMany(ExerciseBlock::class, 'author_id');
     }
 }
