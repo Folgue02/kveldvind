@@ -44,43 +44,34 @@
                         <input type="file" name="icon" accept="image/png, image/jpeg">
                     </label>
                 </div>
-                <div class="section">
-                    <label for="name">NAME</label>
-                    <input type="text" name="name" value="{{ @$exercise?->name }}" required>
-                </div>
+                <x-share.form.text-input
+                    name="name"
+                    label="name"
+                    :value="old('name', @$exercise->name)"
+                    required="true"/>
             </div>
 
             <div class="form-line">
-                <div class="section">
-                    <label for="exercise_tag_id">TAG</label>
-                    <select name="exercise_tag_id">
-                        <option value="">No exercise tag</option>
-                        @foreach($tags as $tag)
-                            <option value="{{ $tag->id }}"
-                                    @if(@$exercise?->exercise_tag_id === $tag->id) selected @endif>
-                                {{ $tag->name }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="section">
-                    <label for="body_region">Body region</label>
-                    <select name="body_region">
-                        <option value="">No body region</option>
-                        @foreach(ExerciseBodyRegion::cases() as $bodyRegion)
-                            <option value="{{ $bodyRegion->toCode() }}"
-                                    @if(@$exercise?->bodyRegion() == $bodyRegion) selected @endif>
-                                {{ $bodyRegion->naturalName() }}</option>
-                        @endforeach
-                    </select>
-                </div>
+                <x-share.form.select-input
+                    name="exercise_tag_id"
+                    label="Tag"
+                    default-option-label="No exercise tag"
+                    :options="$tags->mapWithKeys(fn($t) => [$t->id => $t->name])->toArray()"
+                    :selected="old('exercise_tag_id', @$exercise->exercise_tag_id)"/>
+                <x-share.form.select-input
+                    name="body_region"
+                    label="Body region"
+                    default-option-label="Unknown body region"
+                    :options="array_reduce(ExerciseBodyRegion::cases(), fn($carry, $br) => $carry + [$br->toCode() => $br->naturalName()], [])"
+                    :selected="old('body_region', @$exercise->body_region)"/>
             </div>
 
             <div class="form-line">
-                <div class="section">
-                    <label for="description">description</label>
-                    <textarea name="description" rows="10">{{ @$exercise?->description }}</textarea>
-                </div>
+                <x-share.form.textarea-input
+                    name="description"
+                    label="description"
+                    rows="10"
+                    :value="old('description', @$exercise->description)"/>
             </div>
 
             <div class="attachments-line">
@@ -88,10 +79,11 @@
             </div>
 
             <div class="form-line">
-                <div class="checkbox-section">
-                    <label for="public">Public</label>
-                    <input type="checkbox" name="public" value="1" {{ @$exercise->public ? 'checked' : '' }}>
-                </div>
+                <x-share.form.checkbox-input
+                    name="public"
+                    label="public"
+                    :selected="old('public', @$exercise->public == 1)"
+                    />
             </div>
         </form>
         <div class="action-line">
