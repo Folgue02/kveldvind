@@ -26,5 +26,6 @@ class DatabaseSeeder extends Seeder
             ]);
 
         $this->call(ExerciseSeeder::class);
+        $this->call(ExerciseBlockSeeder::class);
     }
 }
