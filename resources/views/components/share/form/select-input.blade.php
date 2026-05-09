@@ -1,3 +1,13 @@
+@props([
+    'name',
+    'label',
+    'options',
+    'inputId',
+    'selected',
+    'defaultOptionLabel',
+    'defaultOptionValue' => '',
+    'defaultDisabled',
+])
 @pushonce('styles')
     @vite(['resources/css/share/form.css'])
 @endpushonce

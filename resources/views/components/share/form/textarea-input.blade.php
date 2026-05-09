@@ -1,3 +1,10 @@
+@props([
+    'name',
+    'label',
+    'inputId',
+    'rows' => 10,
+    'value' => '',
+])
 @pushonce('styles')
     @vite(['resources/css/share/form.css'])
 @endpushonce

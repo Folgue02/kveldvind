@@ -22,7 +22,7 @@
         @forelse($exercises as $exercise)
             <x-workout.exercises.card :exercise="$exercise"/>
         @empty
-            <p>No exercises, create one <a href="#">here</a></p>
+            <p>No exercises, create one <a href="{{ route('workout.exercises.create') }}">here</a></p>
         @endforelse
     </div>
 @endsection
