@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Workout;
 
 use App\Http\Controllers\Controller;

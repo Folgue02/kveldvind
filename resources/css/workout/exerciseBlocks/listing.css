@@ -1,0 +1,48 @@
+.exercise-blocks {
+    margin-inline: auto;
+    margin-bottom: 15px;
+    width: 800px;
+}
+
+.exercise-block {
+    display: block;
+    width: 100%;
+    padding-inline: 20px;
+    border-top: 1px solid var(--kv-ink-muted);
+    border-bottom: 1px solid var(--kv-ink-muted);
+    padding-bottom: 5px;
+    transition-duration: .3s;
+}
+
+.exercise-block:hover {
+    background-color: var(--kv-accent-hover);
+}
+
+.exercise-block + .exercise-block {
+    border-top: none;
+}
+
+.exercise-block .alias {
+    border-radius: var(--kv-radius-md);
+    text-transform: uppercase;
+    font-size: 24px;
+    padding: 3px 5px;
+    background-color: var(--kv-surface);
+    color: var(--kv-ink-muted);
+    border: 1px solid var(--kv-ink-faint);
+}
+
+.exercise-block:hover .alias {
+    background-color: var(--kv-overlay);
+    color: var(--kv-ink);
+}
+
+.exercise-block h3 {
+    font-size: 25px;
+    display: inline;
+}
+
+.exercise-block .description {
+    font-size: 17px;
+}
+

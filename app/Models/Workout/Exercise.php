@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models\Workout;
 
 use App\Models\User;

@@ -19,6 +19,7 @@
         <div class="navbar-right">
             @if(auth()->check())
                 <a href="{{ route('dashboard') }}" class="location-button">Dashboard</a>
+                <a href="{{ route('workout.exercises.blocks.index') }}" class="location-button">My exercise blocks</a>
                 <a href="{{ route('workout.exercises.index') }}" class="location-button">My exercises</a>
             @else
                 <a href="{{ route('login') }}" class="location-button">Login</a>
