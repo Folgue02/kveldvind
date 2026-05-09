@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->string('alias');
+            $table->string('alias', 8);
             $table->tinyInteger('public')->default(0);
             $table->foreignId('author_id')->constrained('users')
                 ->cascadeOnDelete();
