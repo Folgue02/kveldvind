@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('exercises', function (Blueprint $table) {
             $table->id();
             $table->string('name', 255);
-            $table->text('description')->default('');
+            $table->text('description')->nullable()->default('');
             $table->string('icon_path')->nullable();
             $table->foreignId('author_id')->constrained('users')
                 ->cascadeOnDelete();
