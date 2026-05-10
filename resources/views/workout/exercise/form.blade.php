@@ -23,7 +23,7 @@
             </h2>
         </x-slot:left>
         <x-slot:right>
-            <a href="{{ route('workout.exercises.index') }}" class="action">Go back to the listing</a>
+            <a href="{{ route('workout.exercises.index') }}" class="action"><i class="fa-solid fa-arrow-left"></i> Go back to the listing</a>
         </x-slot:right>
     </x-share.page-header>
 
@@ -37,17 +37,16 @@
             @endif
 
             <div class="form-line">
-                <div class="section icon-section">
-                    <label>ICON</label>
-                    <label for="icon" class="image-picker">
-                        {{-- TODO: Create functional image picker --}}
-                        <input type="file" name="icon" accept="image/png, image/jpeg">
-                    </label>
-                </div>
+                <x-share.form.image-picker
+                    name="icon"
+                    label="icon"
+                    section-class="icon-section"
+                    />
                 <x-share.form.text-input
                     name="name"
                     label="name"
                     :value="old('name', @$exercise->name)"
+                    section-class="name-section"
                     required="true"/>
             </div>
 
@@ -87,14 +86,16 @@
             </div>
         </form>
         <div class="action-line">
-            <button type="submit" form="exercise-form" class="action">@if(isset($exercise)) Save @else Create @endif</button>
             @if(isset($exercise))
                 <form action="{{ route('workout.exercises.destroy', $exercise->id) }}">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="action danger">Delete</button>
+                    <button type="submit" class="action danger"><i class="fa-solid fa-trash"></i> Delete</button>
                 </form>
             @endif
+            <button type="submit" form="exercise-form" class="action">
+                 <i class="fa-solid fa-floppy-disk"></i> @if(isset($exercise)) Save @else Create @endif
+            </button>
         </div>
     </div>
 @endsection

@@ -13,7 +13,7 @@
         </x-slot:left>
 
         <x-slot:right>
-            <a href="{{ route('workout.exercises.blocks.form') }}" class="action">+ Create exercise block</a>
+            <a href="{{ route('workout.exercises.blocks.form') }}" class="action"><i class="fa-solid fa-plus"></i> Create exercise block</a>
         </x-slot:right>
     </x-share.page-header>
 

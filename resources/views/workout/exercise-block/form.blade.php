@@ -22,7 +22,7 @@
             </h2>
         </x-slot:left>
         <x-slot:right>
-            <a href="{{ route('workout.exercises.blocks.index') }}" class="action">Go back to the listing</a>
+            <a href="{{ route('workout.exercises.blocks.index') }}" class="action"><i class="fa-solid fa-arrow-left"></i> Go back to the listing</a>
         </x-slot:right>
     </x-share.page-header>
 
@@ -59,10 +59,13 @@
             @if(isset($exerciseBlock))
                 <form action="{{ route('workout.exercises.blocks.destroy', $exerciseBlock->id) }}" method="POST">
                     @method('DELETE')
-                    <button type="submit" class="action danger">Delete</button>
+                    <button type="submit" class="action danger">
+                        <i class="fa-solid fa-trash"></i> Delete
+                    </button>
                 </form>
             @endif
             <button type="submit" class="action" form="exercise-block-form">
+                <i class="fa-solid fa-floppy-disk"></i>
                 @if(isset($exerciseBlock))
                     Save
                 @else

@@ -14,7 +14,7 @@
         </x-slot:left>
 
         <x-slot:right>
-            <a href="{{ route('workout.exercises.create') }}" class="action">+ Create exercise</a>
+            <a href="{{ route('workout.exercises.create') }}" class="action"><i class="fa-solid fa-plus"></i> Create exercise</a>
         </x-slot:right>
     </x-share.page-header>
 
