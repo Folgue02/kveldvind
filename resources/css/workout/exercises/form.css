@@ -4,8 +4,18 @@
     width: 800px;
 }
 
-.exercise-form-container .icon-section {
-    width: 80px;
-    flex: none;
+.exercise-form-container .header-form-line {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: end;
 }
 
+.exercise-form-container .form .form-line .icon-section {
+    flex: 0 0 80px;
+    align-items: end;
+}
+
+.exercise-form-container .form .form-line .name-section {
+    margin-top: auto;
+}

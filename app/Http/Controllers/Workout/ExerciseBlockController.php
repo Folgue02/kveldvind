@@ -28,7 +28,7 @@ class ExerciseBlockController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'nullable|string|max:60000',
         ]);
-        $validated['alias'] = strtoupper($validated['alias']);
+        $validated['alias'] = strtoupper($validated['alias'] ?? '');
         $validated['author_id'] = $request->user()->id;
 
         ExerciseBlock::create($validated);

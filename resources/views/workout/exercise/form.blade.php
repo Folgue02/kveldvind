@@ -30,17 +30,18 @@
 
     <div class="exercise-form-container">
 
-        <form action="{{ isset($exercise) ? route('workout.exercises.update', $exercise->id) : route('workout.exercises.store') }}" method="POST" class="form" id="exercise-form">
+        <form action="{{ isset($exercise) ? route('workout.exercises.update', $exercise->id) : route('workout.exercises.store') }}" method="POST" class="form" id="exercise-form" enctype="multipart/form-data">
             @csrf
             @if(isset($exercise))
                 @method('PUT')
             @endif
 
-            <div class="form-line">
+            <div class="header-form-line form-line">
                 <x-share.form.image-picker
                     name="icon"
                     label="icon"
                     section-class="icon-section"
+                    :value="@$exercise->icon_path ? Storage::url($exercise->icon_path) : ''"
                     />
                 <x-share.form.text-input
                     name="name"

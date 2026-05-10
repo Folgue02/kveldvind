@@ -1,14 +1,14 @@
 <a href="{{ route('workout.exercises.edit', $exercise->id) }}" class="card-exercise card card-lift-hover" data-name="{{ $exercise->name }}">
     <div class="exercise-header">
         <img class="exercise-icon"
-             src="{{ $exercise->icon_path ? Storage::url($exercise->icon_path) : '/assets/default-exercise-icon.png' }}"
+             src="{{ $exercise->icon_path ? Storage::url($exercise->icon_path, 'public') : '/assets/default-exercise-icon.png' }}"
              alt="{{ $exercise->name }}">
         <h4 class="exercise-title">{{ $exercise->name }}</h4>
         <form action="{{ route('workout.exercises.destroy', $exercise->id) }}" class="delete-exercise">
             @csrf
             @method('DELETE')
 
-            <input type="submit" value="🗑">
+            <button type="submit"><i class="fa-solid fa-trash"></i></button>
         </form>
     </div>
     <p class="exercise-description">{{ $exercise->description }}</p>

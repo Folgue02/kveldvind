@@ -6,9 +6,12 @@ use App\Models\Workout\Exercise;
 use App\Models\Workout\ExerciseBodyRegion;
 use App\Models\Workout\ExerciseTag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ExerciseController extends Controller
 {
+    const string ICON_STORAGE_PATH = 'exercise/icons';
+
     /**
      * Display a listing of the resource.
      */
@@ -39,12 +42,19 @@ class ExerciseController extends Controller
             'description' => 'nullable|string|max:65000',
             'exercise_tag_id' => 'nullable|integer|exists:exercise_tags,id',
             'body_region' => 'nullable|integer|in:' . implode(',', $bodyRegionIds),
-            'public' => 'nullable|integer|in:1'
+            'public' => 'nullable|integer|in:1',
+            'icon' => 'nullable|file|mimetypes:image/jpeg,image/png|max:5120',
         ]);
+
+        if ($request->hasFile('icon')) {
+            $iconPath = $request->file('icon')->store(self::ICON_STORAGE_PATH, 'public');
+            $validated['icon_path'] = $iconPath;
+        }
 
         $request->user()->exercises()->create($validated);
 
-        return redirect()->route('workout.exercises.index')->with('success', 'Exercise created succesfully.');
+        return redirect()->route('workout.exercises.index')
+            ->with('success', 'Exercise created succesfully.');
     }
 
     /**
@@ -62,15 +72,35 @@ class ExerciseController extends Controller
     public function update(Request $request, string $id)
     {
         $bodyRegionIds = array_map(fn($bodyRegion) => $bodyRegion->toCode(), ExerciseBodyRegion::cases());
-        $validated = $request->validate([
+        $newExerciseData = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string|max:65000',
             'exercise_tag_id' => 'nullable|integer|exists:exercise_tags,id',
             'body_region' => 'nullable|integer|in:' . implode(',', $bodyRegionIds),
-            'public' => 'nullable|integer|in:1'
+            'public' => 'nullable|integer|in:1',
+            'icon' => 'nullable|file|mimetypes:image/jpeg,image/png|max:5120',
+            'icon_remove' => 'nullable|integer|in:1,0'
         ]);
 
-        Exercise::findOrFail($id)->update($validated);
+        $exercise = Exercise::findOrFail($id);
+
+        // If a new icon is specified, the old icon gets updated in the database,
+        // and the old one gets removed. The icon might also get removed if 'icon_remove'
+        // is set to 1 in the request.
+        if ($request->hasFile('icon')) {
+            $iconPath = $request->file('icon')->store(self::ICON_STORAGE_PATH, 'public');
+            $newExerciseData['icon_path'] = $iconPath;
+        }
+
+        if ($exercise->icon_path && ($newExerciseData['icon_remove'] == 1 || $request->hasFile('icon'))) {
+            $newExerciseData['icon_path'] = null;
+            Storage::disk('public')->delete($exercise->icon_path);
+        }
+
+
+
+        $exercise->update($newExerciseData);
+
         return redirect()->route('workout.exercises.index')->with('success', 'Exercise updated');
     }
 
