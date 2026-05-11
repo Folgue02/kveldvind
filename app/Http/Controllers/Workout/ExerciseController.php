@@ -97,8 +97,6 @@ class ExerciseController extends Controller
             Storage::disk('public')->delete($exercise->icon_path);
         }
 
-
-
         $exercise->update($newExerciseData);
 
         return redirect()->route('workout.exercises.index')->with('success', 'Exercise updated');
@@ -109,7 +107,13 @@ class ExerciseController extends Controller
      */
     public function destroy(string $id)
     {
-        Exercise::findOrFail($id)->delete();
+        $exercise = Exercise::findOrFail($id);
+
+        if ($exercise->icon_path)
+            Storage::disk('public')->delete($exercise->icon_path);
+
+        $exercise->delete();
+
         return redirect()->route('workout.exercises.index')->with('success', 'Exercise removed successfully.');
     }
 }
