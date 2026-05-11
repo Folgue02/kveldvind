@@ -1,0 +1,74 @@
+.multi-image-picker-container {
+    height: 140px;
+}
+
+.multi-image-picker-container input {
+    display: none;
+}
+
+.multi-image-picker-container .image-preview {
+    width: 140px;
+}
+
+.multi-image-picker-container input[type=file] {
+    display: none;
+}
+
+/* Container for all image previews, including the default one */
+.multi-image-picker-container .image-previews {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+}
+
+.multi-image-picker-container .image-preview {
+    border: 1px solid var(--kv-ink);
+    height: 140px;
+    width: 140px;
+    flex: 1;
+    border-radius: var(--kv-radius-md);
+    background-size: contain;
+    background-repeat: no-repeat;
+    flex: 0 1 auto;
+    position: relative;
+    transition-duration: .3s;
+}
+
+.multi-image-picker-container .image-preview:hover:not(.default-preview) {
+    z-index: 10;
+    transform: scale(105%);
+}
+
+.multi-image-picker-container .default-preview {
+    cursor: pointer;
+}
+
+.multi-image-picker-container .image-preview .clear-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    height: 25px;
+    width: 25px;
+    background-color: red;
+    border-radius: 100%;
+    font-size: 20px;
+    transition-duration: .3s;
+}
+
+.multi-image-picker-container .image-preview .clear-button:hover {
+    transform: scale(120%, 120%);
+}
+
+.multi-image-picker-container .default-preview {
+    border: 1px dashed var(--kv-ink-faint);
+    transition-duration: .3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+}
+
+.multi-image-picker-container .default-preview:hover {
+    border-color: var(--kv-ink);
+}
