@@ -1,4 +1,4 @@
-.form label {
+.form label, .form p.label {
     text-transform: uppercase;
     color: var(--kv-ink-faint);
 }

@@ -23,7 +23,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-size: contain;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .image-picker-container > label:hover {
