@@ -1,13 +1,15 @@
 <?php
-namespace App\Services\Workout\Exercises;
+namespace App\Services\Workout;
 
 use App\Models\Workout\Exercise;
 use App\Models\Workout\ExerciseBodyRegion;
+use Illuminate\Http\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class ExerciseService {
     const string ICON_STORAGE_PATH = 'exercises/icons';
+    const string ATTACHMENT_STORAGE_PATH = 'exercises/attachments';
 
     public function saveExercise(Request $request, ?int $exerciseId = null): Exercise
     {
@@ -35,7 +37,22 @@ class ExerciseService {
                 $data['icon_path'] = $iconPath;
             }
 
-            return $request->user()->exercises()->create($data);
+            $attachments = [];
+            if ($request->image_attachments) {
+                foreach ($request->image_attachments as $i => $imageAttachment) {
+                    $attachmentPath = $this->storeAttachmentInStorage($imageAttachment);
+                    $attachments[] = [
+                        'attachment_name' => $imageAttachment->getClientOriginalName(),
+                        'file_path' => $attachmentPath,
+                        'sort_order' => $i,
+                        'attachment_type' => 0
+                    ];
+                }
+            }
+
+            $exercise = $request->user()->exercises()->create($data);
+            $exercise->attachments()->createMany($attachments);
+            return $exercise;
         }
     }
 
@@ -59,8 +76,15 @@ class ExerciseService {
             'body_region' => 'nullable|integer|in:' . implode(',', $bodyRegionIds),
             'public' => 'nullable|integer|in:1',
             'icon' => 'nullable|file|mimetypes:image/jpeg,image/png|max:5120',
-            'icon_remove' => 'nullable|integer|in:1,0'
+            'icon_remove' => 'nullable|integer|in:1,0',
+            'attachment_images' => 'nullable|array|max:10',
+            'attachment_images.*' => 'file|mimetypes:image/jpeg,image/png|max:5120'
         ]);
+    }
+
+    private function storeAttachmentInStorage($attachment): string
+    {
+        return $attachment->store(self::ATTACHMENT_STORAGE_PATH, 'public');
     }
 
     private function storeIconInStorage(Request $request): string

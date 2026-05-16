@@ -5,6 +5,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 #[Fillable('name', 'description', 'icon_path', 'public', 'body_region', 'exercise_tag_id')]
 class Exercise extends Model
@@ -22,5 +23,10 @@ class Exercise extends Model
     public function bodyRegion(): ?ExerciseBodyRegion
     {
         return ExerciseBodyRegion::ofCode($this->body_region);
+    }
+
+    public function attachments(): HasMany
+    {
+        return $this->hasMany(ExerciseAttachment::class);
     }
 }

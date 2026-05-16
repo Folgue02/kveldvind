@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Workout\Exercise;
 use App\Models\Workout\ExerciseBodyRegion;
 use App\Models\Workout\ExerciseTag;
-use App\Services\Workout\Exercises\ExerciseService;
+use App\Services\Workout\ExerciseService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 

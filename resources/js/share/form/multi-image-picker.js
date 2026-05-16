@@ -43,7 +43,7 @@
             const dataTransfer = new DataTransfer();
             [...this.input.files].forEach((f, i) => {
                 if (i != fileIndex)
-                    dataTransfer.add(f);
+                    dataTransfer.items.add(f);
             });
             this.input.files = dataTransfer.files;
         }
@@ -88,7 +88,14 @@
 
     document.querySelectorAll('.multi-image-picker-container input[type=file]').forEach(mipInput => {
         mipInput.addEventListener('change', e => {
-            let mip = MultiImagePicker.byInputName(e.currentTarget.name);
+            let inputName = e.currentTarget.name;
+            let mip = MultiImagePicker.byInputName(inputName.substring(0, inputName.length - 2));
+
+            const dt = new DataTransfer();
+            [...mip.input.files].forEach(f => dt.items.add(f));
+            [...e.target.files].forEach(f => dt.items.add(f));
+            mip.input.files = dt.files;
+
             mip.renderLastUploadedFile();
         });
     });

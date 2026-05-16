@@ -74,8 +74,11 @@
                     :value="old('description', @$exercise->description)"/>
             </div>
 
-            <div class="attachments-line">
-                {{-- TODO --}}
+            <div class="form-line">
+                <x-share.form.multi-image-picker
+                    name="image_attachments"
+                    label="Pictures"/>
+                    {{-- TODO: Value --}}
             </div>
 
             <div class="form-line">
